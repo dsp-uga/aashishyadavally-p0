@@ -56,3 +56,29 @@ def get_word_countlist(subproject, fileslist, path):
                 .reduceByKey(lambda a, b: a + b)
             wordcountlist.append(wordcount.collect())
     return wordcountlist
+
+def get_top_40(subproject, wordcountlist):
+    """
+    Returns a dictionary containing the Top-40 words, and their corresponding word-counts/
+    TF-IDF weights after the text pre-processing, for each of the subprojects
+    :param subproject:
+    :param wordcountlist:
+    :return output:
+    """
+    if subproject != "sp4":
+        data = sc.parallelize(wordcountlist) \
+            .filter(lambda x: x[1] >= 2) \
+            .reduceByKey(lambda a, b: a + b) \
+            .sortBy(lambda x: x[1], ascending=False)
+        output = dict(data.take(40))
+        return output
+    else:
+        output = []
+        idf = get_idf(wordcountlist)
+        for i in range(len(wordcountlist)):
+            top5_tf_idf = sc.parallelize(wordcountlist[i]) \
+                .map(lambda x: (x[0], x[1] * idf[x[0]])) \
+                .sortBy(lambda x: x[1], ascending=False) \
+                .take(5)
+            output.extend(top5_tf_idf)
+        return dict(output)
