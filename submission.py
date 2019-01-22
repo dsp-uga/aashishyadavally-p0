@@ -4,9 +4,7 @@ import os
 
 
 def main():
-    """
-    Lorem Ipsum
-    """
+    # Get path of directory containing project by omitting out "submission.py" from inputted file path
     path = sys.argv[0][:-13]
     subprojects = ["sp1", "sp2", "sp3", "sp4"]
     files_list = os.listdir(os.path.join(path, 'data'))
