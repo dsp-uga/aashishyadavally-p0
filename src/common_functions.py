@@ -82,3 +82,21 @@ def get_top_40(subproject, wordcountlist):
                 .take(5)
             output.extend(top5_tf_idf)
         return dict(output)
+
+
+def write_to_json(subproject, path, output):
+    """Writes the output dictionaries to corresponding sp*.json files"""
+    if os.path.isdir(os.path.join(path, 'outputs')):
+        with open(os.path.join(path, 'outputs', subproject + '.json'), 'w') as f:
+            json.dump(output, f)
+    else:
+        os.mkdir(os.path.join(path, 'outputs'))
+        with open(os.path.join(path, 'outputs', subproject + '.json'), 'w') as f:
+            json.dump(output, f)
+
+    f.close()
+    print(subproject + ".json file successfully created.")
+    return 1
+
+
+sc = SparkContext()
