@@ -44,7 +44,7 @@ The tasks implemented in this project include:
   The Autolab submission works for me, and gives scores of 98.5, 100, 96.5, 100 for each of sp1.json, sp2.json, sp3.json, sp4.json
 
 ## Contributors
-* In the current project, [Aashish Yadavally](https://github.com/aashishyadavally) was the only contributor. See Contributors file for more details.
+* In the current project, [Aashish Yadavally](https://github.com/aashishyadavally) was the only contributor. See [Contributors](https://github.com/dsp-uga/aashishyadavally-p0/blob/master/CONTRIBUTORS.md) file for more details.
 ## Authors
 * [Aashish Yadavally](https://github.com/aashishyadavally)
 
